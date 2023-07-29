@@ -12,9 +12,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel() {
-    val listUsers = MutableLiveData<List<User>>()
+    val listUsers = MutableLiveData<ArrayList<User>>()
 
-    suspend fun setSearchUsers(query: String) {
+    fun setSearchUsers(query: String) {
         RetrofitClient.apiInstance.getAllUsersByName(query)
             .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
@@ -33,7 +33,7 @@ class MainViewModel : ViewModel() {
             })
     }
 
-    fun getSearchUsers(): LiveData<List<User>> {
+    fun getSearchUsers(): LiveData<ArrayList<User>> {
         return listUsers
     }
 }
