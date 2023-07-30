@@ -15,7 +15,6 @@ import com.landfathich.githubsearchapp.databinding.UserItemBinding
 import com.landfathich.githubsearchapp.ui.content.ContentActivity
 import com.squareup.picasso.Picasso
 
-
 const val ITEM_VIEW_TYPE_USER = 0
 const val ITEM_VIEW_TYPE_REPO = 1
 
