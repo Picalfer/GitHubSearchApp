@@ -2,8 +2,8 @@ package com.landfathich.githubsearchapp.ui.screens.content
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
@@ -17,7 +17,7 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
     private lateinit var adapter: FileAdapter
     private lateinit var owner: String
     private lateinit var repo: String
-    private var isFirstPage = true
+    private var countNext = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +64,9 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
     }
 
     override fun goNextFolder(path: String) {
+        countNext++
+        Log.d("TEST", "next go folder, count now: $countNext")
         getContent(owner, repo, path)
-        isFirstPage = false
     }
 
     override fun openFile(link: String) {
@@ -75,10 +76,12 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
     }
 
     override fun onBackPressed() {
-        if (isFirstPage) {
+        if (countNext == 0) {
             super.onBackPressed()
         } else {
-            Toast.makeText(this, isFirstPage.toString(), Toast.LENGTH_SHORT).show()
+            countNext--
+            Log.d("TEST", "back go folder, count now: $countNext")
+            getContent(owner, repo)
         }
     }
 }
