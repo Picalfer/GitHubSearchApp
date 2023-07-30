@@ -10,6 +10,6 @@ interface GitHubApi {
     @GET("search/users")
     @Headers("Authorization: token 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")
     fun getAllUsersByName(
-        @Query("q") query: String
+        @Query("q") query: String,
     ): Call<UserResponse>
 }

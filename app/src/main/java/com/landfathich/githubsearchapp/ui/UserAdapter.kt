@@ -9,7 +9,7 @@ import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
 import com.squareup.picasso.Picasso
 
-class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<User>()
 
@@ -19,13 +19,14 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val binding = UserItemBinding.bind(itemView)
+    class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = UserItemBinding.bind(itemView)
 
         fun bind(user: User) {
             binding.apply {
                 Picasso.get().load(user.avatar_url).into(ivAvatar)
-                tvUsername.text = user.login
+                tvLogin.text = user.login
+                tvScore.text = user.score.toString()
             }
         }
     }
