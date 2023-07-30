@@ -1,39 +1,31 @@
 package com.landfathich.githubsearchapp.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.landfathich.githubsearchapp.data.api.RetrofitClient
-import com.landfathich.githubsearchapp.data.model.User
-import com.landfathich.githubsearchapp.data.model.UserResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.landfathich.githubsearchapp.data.model.Item
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    val listUsers = MutableLiveData<ArrayList<User>>()
+    val listItems = MutableLiveData<ArrayList<Item>>()
 
-    fun setSearchUsers(query: String) {
-        RetrofitClient.apiInstance.getAllUsersByName(query)
-            .enqueue(object : Callback<UserResponse> {
-                override fun onResponse(
-                    call: Call<UserResponse>,
-                    response: Response<UserResponse>,
-                ) {
-                    if (response.isSuccessful) {
-                        listUsers.postValue(response.body()?.items)
-                    }
-                }
+    fun setSearch(query: String) {
+        listItems.postValue(null)
+        CoroutineScope(Dispatchers.IO).launch {
+            val userResponse = RetrofitClient.apiInstance.getAllUsersByName(query)
+            val userList = userResponse.items as ArrayList<Item>
+            listItems.postValue(userList)
 
-                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Log.d("TEST", t.message.toString())
-                }
-
-            })
+            val repoResponse = RetrofitClient.apiInstance.getAllReposByName(query)
+            val repoList = repoResponse.items as ArrayList<Item>
+            listItems.postValue(repoList)
+        }
     }
 
-    fun getSearchUsers(): LiveData<ArrayList<User>> {
-        return listUsers
+    fun getSearch(): LiveData<ArrayList<Item>> {
+        return listItems
     }
 }

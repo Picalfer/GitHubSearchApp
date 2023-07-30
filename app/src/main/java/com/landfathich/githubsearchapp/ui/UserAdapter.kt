@@ -5,23 +5,37 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.landfathich.githubsearchapp.R
+import com.landfathich.githubsearchapp.data.model.Item
+import com.landfathich.githubsearchapp.data.model.Repo
 import com.landfathich.githubsearchapp.data.model.User
+import com.landfathich.githubsearchapp.databinding.RepoItemBinding
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
 import com.squareup.picasso.Picasso
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+const val ITEM_VIEW_TYPE_USER = 0
+const val ITEM_VIEW_TYPE_REPO = 1
 
-    private val list = ArrayList<User>()
+class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun setList(users: ArrayList<User>) {
+    private val list = ArrayList<Item>()
+
+    fun setList(items: ArrayList<Item>) {
         list.clear()
-        list.addAll(users)
+        list.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun clearList() {
+        list.clear()
+    }
+
+    fun addList(items: ArrayList<Item>) {
+        list.addAll(items)
         notifyDataSetChanged()
     }
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = UserItemBinding.bind(itemView)
-
         fun bind(user: User) {
             binding.apply {
                 Picasso.get().load(user.avatar_url).into(ivAvatar)
@@ -31,14 +45,46 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
-        return UserViewHolder(view)
+    class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = RepoItemBinding.bind(itemView)
+        fun bind(repo: Repo) {
+            binding.apply {
+                tvForkCount.text = repo.forks_count.toString()
+                tvName.text = repo.name
+                tvDesc.text = repo.description
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (list[position] is User) ITEM_VIEW_TYPE_USER
+        else if (list[position] is Repo) ITEM_VIEW_TYPE_REPO
+        else throw IllegalArgumentException("Invalid item view type")
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (viewType == ITEM_VIEW_TYPE_USER) {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
+            return UserViewHolder(view)
+        } else if (viewType == ITEM_VIEW_TYPE_REPO) {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.repo_item, parent, false)
+            return RepoViewHolder(view)
+        } else throw IllegalArgumentException("Invalid viewType ")
     }
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(list[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (getItemViewType(position) == ITEM_VIEW_TYPE_USER) {
+            val h = holder as UserViewHolder
+            val user = list[position] as User
+            h.bind(user)
+        } else if (getItemViewType(position) == ITEM_VIEW_TYPE_REPO) {
+            val h = holder as RepoViewHolder
+            val repo = list[position] as Repo
+            h.bind(repo)
+        }
     }
 }

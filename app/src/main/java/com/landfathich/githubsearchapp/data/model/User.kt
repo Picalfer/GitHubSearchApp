@@ -20,4 +20,4 @@ data class User(
     val subscriptions_url: String,
     val type: String,
     val url: String,
-)
+) : Item

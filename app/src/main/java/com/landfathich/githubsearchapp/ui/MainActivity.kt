@@ -6,8 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,41 +29,34 @@ class MainActivity : AppCompatActivity() {
             rvUsers.setHasFixedSize(true)
 
             btnSearch.setOnClickListener {
-                searchUser()
+                search()
             }
 
             etSearch.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    searchUser()
+                    search()
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
             }
         }
 
-        viewModel.getSearchUsers().observe(this) {
+        viewModel.getSearch().observe(this) {
             if (it != null) {
-                adapter.setList(it)
+                adapter.addList(it)
                 showLoading(false)
+            } else {
+                adapter.clearList()
             }
         }
-
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-
     }
 
-    private fun searchUser() {
+    private fun search() {
         binding.apply {
             val query = etSearch.text.toString()
             if (query.isEmpty()) return
             showLoading(true)
-            viewModel.setSearchUsers(query)
+            viewModel.setSearch(query)
         }
     }
 
@@ -76,5 +67,4 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
 }
