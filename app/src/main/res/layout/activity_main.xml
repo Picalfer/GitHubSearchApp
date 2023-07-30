@@ -27,7 +27,7 @@
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Введите запрос"
+                android:hint="@string/et_query_hint"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        tools:listitem="@layout/user_item" />
+        tools:listitem="@layout/repo_item" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

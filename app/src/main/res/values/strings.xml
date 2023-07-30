@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitHubSearchApp</string>
+    <string name="forks">Forks</string>
+    <string name="et_query_hint">Введите запрос</string>
 </resources>
