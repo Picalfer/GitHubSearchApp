@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.data.model.api
+package com.landfathich.githubsearchapp.api
 
 import com.landfathich.githubsearchapp.data.model.UserResponse
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.data.model.api
+package com.landfathich.githubsearchapp.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
