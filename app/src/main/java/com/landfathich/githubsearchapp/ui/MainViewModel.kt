@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.landfathich.githubsearchapp.api.RetrofitClient
+import com.landfathich.githubsearchapp.data.api.RetrofitClient
 import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.data.model.UserResponse
 import retrofit2.Call
