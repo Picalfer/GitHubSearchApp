@@ -15,10 +15,13 @@
         android:theme="@style/Theme.GitHubSearchApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.content.ContentActivity"
+            android:name=".ui.screens.code.CodeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.screens.content.ContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.screens.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

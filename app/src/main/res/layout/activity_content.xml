@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/little_margin"
-    tools:context=".ui.content.ContentActivity">
+    tools:context=".ui.screens.content.ContentActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

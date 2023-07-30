@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui
+package com.landfathich.githubsearchapp.ui.adapters
 
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +12,7 @@ import com.landfathich.githubsearchapp.data.model.Repo
 import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.databinding.RepoItemBinding
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
-import com.landfathich.githubsearchapp.ui.content.ContentActivity
+import com.landfathich.githubsearchapp.ui.screens.content.ContentActivity
 import com.squareup.picasso.Picasso
 
 const val ITEM_VIEW_TYPE_USER = 0

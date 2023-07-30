@@ -1,11 +1,14 @@
-package com.landfathich.githubsearchapp.ui.content
+package com.landfathich.githubsearchapp.ui.screens.content
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
-import com.landfathich.githubsearchapp.ui.FileAdapter
+import com.landfathich.githubsearchapp.ui.adapters.FileAdapter
+import com.landfathich.githubsearchapp.ui.screens.code.CodeActivity
 
 class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
 
@@ -14,6 +17,7 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
     private lateinit var adapter: FileAdapter
     private lateinit var owner: String
     private lateinit var repo: String
+    private var isFirstPage = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +63,22 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
         }
     }
 
-    override fun onClick(path: String) {
+    override fun goNextFolder(path: String) {
         getContent(owner, repo, path)
+        isFirstPage = false
+    }
+
+    override fun openFile(link: String) {
+        val intent = Intent(this, CodeActivity::class.java)
+        intent.putExtra("link", link)
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        if (isFirstPage) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(this, isFirstPage.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui
+package com.landfathich.githubsearchapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -32,20 +32,20 @@ class FileAdapter(private val listener: Listener) :
                     ivIcon.setImageResource(R.drawable.ic_file)
 
                     itemView.setOnClickListener {
-
+                        listener.openFile(file.html_url)
                     }
                 } else if (file.type == "dir") {
                     ivIcon.setImageResource(R.drawable.ic_folder)
 
                     itemView.setOnClickListener {
-                        listener.onClick(file.path)
+                        listener.goNextFolder(file.path)
                     }
                 }
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileAdapter.FileViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.file_item, parent, false)
         return FileViewHolder(view)
@@ -58,6 +58,7 @@ class FileAdapter(private val listener: Listener) :
     }
 
     interface Listener {
-        fun onClick(path: String)
+        fun goNextFolder(path: String)
+        fun openFile(link: String)
     }
 }
