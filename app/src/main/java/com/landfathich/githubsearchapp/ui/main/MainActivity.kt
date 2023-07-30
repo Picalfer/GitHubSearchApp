@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui
+package com.landfathich.githubsearchapp.ui.main
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
+import com.landfathich.githubsearchapp.ui.UserAdapter
 
 class MainActivity : AppCompatActivity() {
 

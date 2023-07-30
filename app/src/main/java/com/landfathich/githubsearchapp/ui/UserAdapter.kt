@@ -1,5 +1,7 @@
 package com.landfathich.githubsearchapp.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,9 @@ import com.landfathich.githubsearchapp.data.model.Repo
 import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.databinding.RepoItemBinding
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
+import com.landfathich.githubsearchapp.ui.content.ContentActivity
 import com.squareup.picasso.Picasso
+
 
 const val ITEM_VIEW_TYPE_USER = 0
 const val ITEM_VIEW_TYPE_REPO = 1
@@ -37,6 +41,10 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = UserItemBinding.bind(itemView)
         fun bind(user: User) {
+            itemView.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.html_url))
+                itemView.context.startActivity(intent)
+            }
             binding.apply {
                 Picasso.get().load(user.avatar_url).into(ivAvatar)
                 tvLogin.text = user.login
@@ -48,6 +56,12 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = RepoItemBinding.bind(itemView)
         fun bind(repo: Repo) {
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, ContentActivity::class.java)
+                intent.putExtra("owner", repo.owner.login)
+                intent.putExtra("repo", repo.name)
+                itemView.context.startActivity(intent)
+            }
             binding.apply {
                 tvForkCount.text = repo.forks_count.toString()
                 tvName.text = repo.name
