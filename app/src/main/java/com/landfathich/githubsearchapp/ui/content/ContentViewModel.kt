@@ -13,10 +13,10 @@ class ContentViewModel : ViewModel() {
 
     val listFiles = MutableLiveData<ArrayList<RepoContentItem>>()
 
-    fun getContent(owner: String, repo: String) {
+    fun getContent(owner: String, repo: String, path: String = "") {
 
         CoroutineScope(Dispatchers.IO).launch {
-            val contentResponse = RetrofitClient.apiInstance.getRepoContent(owner, repo)
+            val contentResponse = RetrofitClient.apiInstance.getRepoContent(owner, repo, path)
             listFiles.postValue(contentResponse)
         }
     }

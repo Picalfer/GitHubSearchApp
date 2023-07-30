@@ -8,7 +8,8 @@ import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.data.model.RepoContentItem
 import com.landfathich.githubsearchapp.databinding.FileItemBinding
 
-class FileAdapter : RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
+class FileAdapter(private val listener: Listener) :
+    RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
     private val list = ArrayList<RepoContentItem>()
 
     fun addList(items: ArrayList<RepoContentItem>) {
@@ -16,18 +17,29 @@ class FileAdapter : RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun setList(items: ArrayList<RepoContentItem>) {
+        list.clear()
+        list.addAll(items)
+        notifyDataSetChanged()
+    }
+
     class FileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = FileItemBinding.bind(itemView)
-        fun bind(file: RepoContentItem) {
-            itemView.setOnClickListener {
-
-            }
+        fun bind(file: RepoContentItem, listener: Listener) {
             binding.apply {
                 tvName.text = file.name
                 if (file.type == "file") {
                     ivIcon.setImageResource(R.drawable.ic_file)
-                } else if (file.type == "dir"){
+
+                    itemView.setOnClickListener {
+
+                    }
+                } else if (file.type == "dir") {
                     ivIcon.setImageResource(R.drawable.ic_folder)
+
+                    itemView.setOnClickListener {
+                        listener.onClick(file.path)
+                    }
                 }
             }
         }
@@ -42,6 +54,10 @@ class FileAdapter : RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: FileViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], listener)
+    }
+
+    interface Listener {
+        fun onClick(path: String)
     }
 }

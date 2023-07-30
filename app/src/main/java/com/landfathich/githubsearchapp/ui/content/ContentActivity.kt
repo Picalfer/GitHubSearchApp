@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
 import com.landfathich.githubsearchapp.ui.FileAdapter
 
-class ContentActivity : AppCompatActivity() {
+class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
 
     private lateinit var binding: ActivityContentBinding
     private lateinit var viewModel: ContentViewModel
     private lateinit var adapter: FileAdapter
+    private lateinit var owner: String
+    private lateinit var repo: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +24,13 @@ class ContentActivity : AppCompatActivity() {
             ViewModelProvider.NewInstanceFactory()
         ).get(ContentViewModel::class.java)
 
-        adapter = FileAdapter()
+        adapter = FileAdapter(this)
         adapter.notifyDataSetChanged()
 
-        val owner = intent.getStringExtra("owner")
-        val repo = intent.getStringExtra("repo")
+        owner = intent.getStringExtra("owner").toString()
+        repo = intent.getStringExtra("repo").toString()
 
-        if (owner != null && repo != null) {
-            getContent(owner, repo)
-        }
+        getContent(owner, repo)
 
         showLoading(true)
 
@@ -41,16 +41,15 @@ class ContentActivity : AppCompatActivity() {
 
         viewModel.getSearch().observe(this) {
             if (it != null) {
-                adapter.addList(it)
+                adapter.setList(it)
                 showLoading(false)
             }
         }
     }
 
-    private fun getContent(owner: String, repo: String) {
-        viewModel.getContent(owner, repo)
+    private fun getContent(owner: String, repo: String, path: String = "") {
+        viewModel.getContent(owner, repo, path)
     }
-
 
     private fun showLoading(state: Boolean) {
         if (state) {
@@ -58,5 +57,9 @@ class ContentActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onClick(path: String) {
+        getContent(owner, repo, path)
     }
 }
