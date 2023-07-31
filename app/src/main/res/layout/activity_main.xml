@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/ic_inactive_search" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,14 +1,16 @@
 package com.landfathich.githubsearchapp.ui.screens.main
 
-import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
 import com.landfathich.githubsearchapp.ui.adapters.UserAdapter
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
+        toggleBtnActive(false)
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
@@ -30,19 +32,9 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             rvUsers.adapter = adapter
             rvUsers.setHasFixedSize(true)
-
-            btnSearch.setOnClickListener {
-                search()
-            }
-
-            etSearch.setOnKeyListener { v, keyCode, event ->
-                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    search()
-                    return@setOnKeyListener true
-                }
-                return@setOnKeyListener false
-            }
         }
+
+        setUpListeners()
 
         viewModel.getSearch().observe(this) {
             if (it != null) {
@@ -51,6 +43,48 @@ class MainActivity : AppCompatActivity() {
             } else {
                 adapter.clearList()
             }
+        }
+    }
+
+    private fun setUpListeners() = with(binding){
+        btnSearch.setOnClickListener {
+            search()
+        }
+
+        etSearch.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER && etSearch.text.toString().length > 2) {
+                search()
+
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+
+        etSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                if (s.length > 2) toggleBtnActive(true)
+                else toggleBtnActive(false)
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int,
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+    private fun toggleBtnActive(state: Boolean) = with(binding) {
+        if (state) {
+            btnSearch.isEnabled = true
+            btnSearch.setImageResource(R.drawable.ic_search)
+        } else {
+            btnSearch.isEnabled = false
+            btnSearch.setImageResource(R.drawable.ic_inactive_search)
         }
     }
 
@@ -66,16 +100,12 @@ class MainActivity : AppCompatActivity() {
     private fun showLoading(state: Boolean) = with(binding) {
         if (state) {
             progressBar.visibility = View.VISIBLE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                etSearch.isEnabled = false
-                btnSearch.focusable = View.NOT_FOCUSABLE
-            }
+            etSearch.isEnabled = false
+            toggleBtnActive(false)
         } else {
             progressBar.visibility = View.GONE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                etSearch.isEnabled = true
-                btnSearch.focusable = View.FOCUSABLE
-            }
+            etSearch.isEnabled = true
+            toggleBtnActive(true)
         }
     }
 }
