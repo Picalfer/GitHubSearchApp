@@ -15,9 +15,10 @@ App where you can search users and repos by name, open profile of user or watch 
 Стек проекта:
 1. Kotlin
 2. Retrofit2
-3. RecyclerView
-4. ViewModel
-5. webView
+3. Coroutines
+4. RecyclerView
+5. ViewModel
+6. webView
 
 <img  src="https://github.com/Picalfer/GitHubSearchApp/blob/master/app/src/main/res/drawable/screen_main.webp"  width="350" alt="Landing screen"/> <img  src="https://github.com/Picalfer/GitHubSearchApp/blob/master/app/src/main/res/drawable/screen_load_search.webp"  width="350" alt="Game screen"/>
 <img  src="https://github.com/Picalfer/GitHubSearchApp/blob/master/app/src/main/res/drawable/screen_repo_search.webp"  width="350" alt="Landing screen"/> <img  src="https://github.com/Picalfer/GitHubSearchApp/blob/master/app/src/main/res/drawable/screen_result.webp"  width="350" alt="Game screen"/>
