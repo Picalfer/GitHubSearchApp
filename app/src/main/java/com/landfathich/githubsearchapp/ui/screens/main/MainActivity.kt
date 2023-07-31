@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpListeners() = with(binding){
+    private fun setUpListeners() = with(binding) {
         btnSearch.setOnClickListener {
             search()
         }
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             val query = etSearch.text.toString()
             if (query.isEmpty()) return
             showLoading(true)
-            viewModel.setSearch(query)
+            viewModel.setSearch(this@MainActivity, query)
         }
     }
 

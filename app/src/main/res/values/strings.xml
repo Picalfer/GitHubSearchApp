@@ -2,4 +2,6 @@
     <string name="app_name">GitHubSearchApp</string>
     <string name="forks">Forks</string>
     <string name="et_query_hint">Введите запрос</string>
+    <string name="reloap_page">Перезагрузить страницу</string>
+    <string name="error_text_title">Ошибка, проверьте интернет</string>
 </resources>

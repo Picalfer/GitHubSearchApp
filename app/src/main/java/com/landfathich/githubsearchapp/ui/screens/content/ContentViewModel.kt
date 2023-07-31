@@ -17,7 +17,7 @@ class ContentViewModel : ViewModel() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val contentResponse = RetrofitClient.apiInstance.getRepoContent(owner, repo, path)
-            listFiles.postValue(contentResponse)
+            listFiles.postValue(contentResponse.body())
         }
     }
 

@@ -29,7 +29,6 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
         ).get(ContentViewModel::class.java)
 
         adapter = FileAdapter(this)
-        adapter.notifyDataSetChanged()
 
         owner = intent.getStringExtra("owner").toString()
         repo = intent.getStringExtra("repo").toString()
