@@ -1,8 +1,10 @@
 package com.landfathich.githubsearchapp.ui.screens.main
 
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
@@ -61,11 +63,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(state: Boolean) {
+    private fun showLoading(state: Boolean) = with(binding) {
         if (state) {
-            binding.progressBar.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                etSearch.isEnabled = false
+                btnSearch.focusable = View.NOT_FOCUSABLE
+            }
         } else {
-            binding.progressBar.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                etSearch.isEnabled = true
+                btnSearch.focusable = View.FOCUSABLE
+            }
         }
     }
 }
