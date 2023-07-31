@@ -80,4 +80,6 @@ data class Repo(
     val watchers_count: Int,
     val web_commit_signoff_required: Boolean,
     val owner: User
-) : Item
+) : Item {
+    override var id_name = name
+}

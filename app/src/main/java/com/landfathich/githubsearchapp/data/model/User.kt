@@ -1,5 +1,7 @@
 package com.landfathich.githubsearchapp.data.model
 
+import kotlin.math.log
+
 data class User(
     val avatar_url: String,
     val events_url: String,
@@ -20,4 +22,6 @@ data class User(
     val subscriptions_url: String,
     val type: String,
     val url: String,
-) : Item
+) : Item {
+    override var id_name = login
+}
