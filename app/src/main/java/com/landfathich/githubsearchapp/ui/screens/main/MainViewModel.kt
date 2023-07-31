@@ -41,8 +41,8 @@ class MainViewModel : ViewModel() {
                 val intent = Intent(context, ErrorActivity::class.java)
                 intent.putExtra("error", e.toString())
                 context.startActivity(intent)
+                listItems.postValue(ArrayList())
             }
-
         }
     }
 

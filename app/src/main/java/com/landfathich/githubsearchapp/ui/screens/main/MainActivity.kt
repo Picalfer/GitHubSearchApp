@@ -11,7 +11,6 @@ import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
 import com.landfathich.githubsearchapp.ui.adapters.UserAdapter
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
