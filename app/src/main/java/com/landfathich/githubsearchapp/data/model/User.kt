@@ -1,7 +1,5 @@
 package com.landfathich.githubsearchapp.data.model
 
-import kotlin.math.log
-
 data class User(
     val avatar_url: String,
     val events_url: String,

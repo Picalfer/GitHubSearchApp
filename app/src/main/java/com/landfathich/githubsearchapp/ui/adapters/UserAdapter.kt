@@ -47,7 +47,7 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.apply {
                 Picasso.get().load(user.avatar_url).into(ivAvatar)
                 tvLogin.text = user.login
-                tvScore.text = user.score.toString()
+                tvType.text = user.type
             }
         }
     }
