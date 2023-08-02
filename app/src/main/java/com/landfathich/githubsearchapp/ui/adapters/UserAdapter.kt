@@ -59,6 +59,9 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val intent = Intent(itemView.context, ContentActivity::class.java)
                 intent.putExtra("owner", repo.owner.login)
                 intent.putExtra("repo", repo.name)
+                intent.putExtra("forks", repo.forks_count.toString())
+                intent.putExtra("desc", repo.description)
+                intent.putExtra("avatar_url", repo.owner.avatar_url)
                 itemView.context.startActivity(intent)
             }
             binding.apply {

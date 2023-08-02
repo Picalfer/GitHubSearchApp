@@ -4,4 +4,5 @@
     <string name="et_query_hint">Введите запрос</string>
     <string name="reloap_page">Перезагрузить страницу</string>
     <string name="error_text_title">Ошибка, проверьте интернет</string>
+    <string name="no_description_text">No description</string>
 </resources>

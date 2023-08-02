@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
 import com.landfathich.githubsearchapp.ui.adapters.FileAdapter
 import com.landfathich.githubsearchapp.ui.screens.code.CodeActivity
+import com.squareup.picasso.Picasso
 
 class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
 
@@ -32,8 +34,12 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
 
         owner = intent.getStringExtra("owner").toString()
         repo = intent.getStringExtra("repo").toString()
+        val description = intent.getStringExtra("desc")
+        val forksCount = intent.getStringExtra("forks").toString()
+        val avatarUrl = intent.getStringExtra("avatar_url").toString()
 
         getContent(owner, repo)
+        setRepoInfo(owner, repo, description, forksCount, avatarUrl)
 
         showLoading(true)
 
@@ -48,6 +54,14 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
                 showLoading(false)
             }
         }
+    }
+
+    private fun setRepoInfo(owner: String, repo: String, description: String?, forksCount: String, avatarUrl: String) = with(binding) {
+        tvLogin.text = owner
+        tvName.text = repo
+        tvDesc.text = description ?: getString(R.string.no_description_text)
+        tvForkCount.text = forksCount
+        Picasso.get().load(avatarUrl).into(ivAvatar)
     }
 
     private fun getContent(owner: String, repo: String, path: String = "") {
