@@ -3,7 +3,7 @@ package com.landfathich.githubsearchapp.ui.adapter
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.landfathich.githubsearchapp.data.model.Item
 
-class UserAdapter : ListDelegationAdapter<List<Item>>() {
+class SearchAdapter : ListDelegationAdapter<List<Item>>() {
 
     init {
         delegatesManager.addDelegate(UserDelegateAdapter())

@@ -1,8 +1,10 @@
 package com.landfathich.githubsearchapp.data.api
 
+import com.landfathich.githubsearchapp.data.model.DetailUserResponse
 import com.landfathich.githubsearchapp.data.model.UserResponse
 import com.landfathich.githubsearchapp.data.model.RepoResponse
 import com.landfathich.githubsearchapp.data.model.RepoContent
+import com.landfathich.githubsearchapp.data.model.User
 import retrofit2.http.GET
 import retrofit2.Response
 import retrofit2.http.Headers
@@ -16,6 +18,24 @@ interface GitHubApi {
         @Query("q") query: String,
     ): Response<UserResponse>
 
+    @GET("user/{username}")
+    @Headers("Authorization: token ${ApiConstants.token}")
+    suspend fun getUserDetail(
+        @Path("username") username: String,
+    ): Response<DetailUserResponse>
+
+    @GET("users/{username}/followers")
+    @Headers("Authorization: token ${ApiConstants.token}")
+    suspend fun getFollowers(
+        @Path("username") username: String
+    ): Response<ArrayList<User>>
+
+    @GET("users/{username}/following")
+    @Headers("Authorization: token ${ApiConstants.token}")
+    suspend fun getFollowing(
+        @Path("username") username: String
+    ): Response<ArrayList<User>>
+
     @GET("search/repositories")
     @Headers("Authorization: token ${ApiConstants.token}")
     suspend fun getAllReposByName(
@@ -27,6 +47,6 @@ interface GitHubApi {
     suspend fun getRepoContent(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
-        @Path("path") path: String = ""
+        @Path("path") path: String = "",
     ): Response<RepoContent>
 }

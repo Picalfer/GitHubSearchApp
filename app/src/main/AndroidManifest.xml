@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GitHubSearchApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.screen.detail.DetailUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.screen.ErrorActivity"
             android:exported="false" />
         <activity

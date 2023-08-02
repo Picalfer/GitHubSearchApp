@@ -9,20 +9,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
-import com.landfathich.githubsearchapp.ui.adapter.UserAdapter
+import com.landfathich.githubsearchapp.ui.adapter.SearchAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: UserAdapter
+    private lateinit var adapter: SearchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         toggleBtnActive(false)
-        adapter = UserAdapter()
+        adapter = SearchAdapter()
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
