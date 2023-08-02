@@ -71,7 +71,7 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
     }
 
     private fun getContent(owner: String, repo: String, path: String = "") {
-        viewModel.getContent(owner, repo, path)
+        viewModel.getContent(this, owner, repo, path)
     }
 
     private fun showLoading(state: Boolean) {
