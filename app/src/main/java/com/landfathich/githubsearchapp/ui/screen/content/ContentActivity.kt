@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens.content
+package com.landfathich.githubsearchapp.ui.screen.content
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
-import com.landfathich.githubsearchapp.ui.adapters.FileAdapter
-import com.landfathich.githubsearchapp.ui.screens.code.CodeActivity
+import com.landfathich.githubsearchapp.ui.adapter.FileAdapter
+import com.landfathich.githubsearchapp.ui.screen.code.CodeActivity
 import com.squareup.picasso.Picasso
 
 class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
@@ -56,7 +56,13 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
         }
     }
 
-    private fun setRepoInfo(owner: String, repo: String, description: String?, forksCount: String, avatarUrl: String) = with(binding) {
+    private fun setRepoInfo(
+        owner: String,
+        repo: String,
+        description: String?,
+        forksCount: String,
+        avatarUrl: String,
+    ) = with(binding) {
         tvLogin.text = owner
         tvName.text = repo
         tvDesc.text = description ?: getString(R.string.no_description_text)

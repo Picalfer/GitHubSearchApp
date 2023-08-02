@@ -55,4 +55,7 @@ dependencies {
 
     // picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    // adapter delegate
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
 }

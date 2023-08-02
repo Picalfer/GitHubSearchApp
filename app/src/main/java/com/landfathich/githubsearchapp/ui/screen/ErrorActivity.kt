@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens
+package com.landfathich.githubsearchapp.ui.screen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.landfathich.githubsearchapp.R
-import com.landfathich.githubsearchapp.ui.screens.main.MainActivity
+import com.landfathich.githubsearchapp.ui.screen.main.MainActivity
 
 class ErrorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

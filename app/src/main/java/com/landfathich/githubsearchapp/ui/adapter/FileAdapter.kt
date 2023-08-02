@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.adapters
+package com.landfathich.githubsearchapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

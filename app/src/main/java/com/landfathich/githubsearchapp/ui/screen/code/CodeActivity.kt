@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens.code
+package com.landfathich.githubsearchapp.ui.screen.code
 
 import android.os.Bundle
 import android.webkit.CookieManager

@@ -6,7 +6,7 @@
     android:padding="40dp"
     android:background="@color/middle_gray"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.ErrorActivity">
+    tools:context=".ui.screen.ErrorActivity">
 
     <TextView
         android:id="@+id/tv_error"

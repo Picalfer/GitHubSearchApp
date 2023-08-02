@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens.content
+package com.landfathich.githubsearchapp.ui.screen.content
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

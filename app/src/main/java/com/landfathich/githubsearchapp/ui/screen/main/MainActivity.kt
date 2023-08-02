@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens.main
+package com.landfathich.githubsearchapp.ui.screen.main
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityMainBinding
-import com.landfathich.githubsearchapp.ui.adapters.UserAdapter
+import com.landfathich.githubsearchapp.ui.adapter.UserAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,10 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getSearch().observe(this) {
             if (it != null) {
-                adapter.addList(it)
+                adapter.items = it
                 showLoading(false)
-            } else {
-                adapter.clearList()
             }
         }
     }

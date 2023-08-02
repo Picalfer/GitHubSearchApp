@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CFB6EC"
     android:padding="@dimen/little_margin"
-    tools:context=".ui.screens.content.ContentActivity">
+    tools:context=".ui.screen.content.ContentActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/repo_info"

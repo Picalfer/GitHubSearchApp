@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.ui.screens.main
+package com.landfathich.githubsearchapp.ui.screen.main
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ import com.landfathich.githubsearchapp.data.api.RetrofitClient
 import com.landfathich.githubsearchapp.data.model.Item
 import com.landfathich.githubsearchapp.data.model.Repo
 import com.landfathich.githubsearchapp.data.model.User
-import com.landfathich.githubsearchapp.ui.screens.ErrorActivity
+import com.landfathich.githubsearchapp.ui.screen.ErrorActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
