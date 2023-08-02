@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.data.model.Item
@@ -93,6 +94,7 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_appearance_animation)
         if (getItemViewType(position) == ITEM_VIEW_TYPE_USER) {
             val h = holder as UserViewHolder
             val user = list[position] as User
