@@ -3,6 +3,7 @@ package com.landfathich.githubsearchapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.data.model.RepoContentItem
@@ -54,6 +55,7 @@ class FileAdapter(private val listener: Listener) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: FileViewHolder, position: Int) {
+        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.file_appearance_animation)
         holder.bind(list[position], listener)
     }
 

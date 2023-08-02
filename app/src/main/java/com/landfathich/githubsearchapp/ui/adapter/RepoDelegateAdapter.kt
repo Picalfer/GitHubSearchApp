@@ -52,7 +52,7 @@ class RepoDelegateAdapter :
         payloads: MutableList<Any>,
     ) {
         holder.itemView.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_appearance_animation)
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.user_and_repo_appearance_animation)
         holder.bind(item)
     }
 }
