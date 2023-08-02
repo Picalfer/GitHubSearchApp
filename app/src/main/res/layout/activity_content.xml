@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFB6EC"
+    android:background="@color/soft_purple"
     android:padding="@dimen/little_margin"
     tools:context=".ui.screen.content.ContentActivity">
 
@@ -34,12 +34,14 @@
 
             <TextView
                 android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:paddingHorizontal="@dimen/middle_margin"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
-                app:layout_constraintEnd_toStartOf="@+id/tv_fork_count"
+                app:layout_constraintEnd_toStartOf="@+id/tv_fork"
                 app:layout_constraintStart_toEndOf="@+id/iv_avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Login" />
@@ -48,10 +50,10 @@
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/little_margin"
                 android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/little_margin"
                 app:layout_constraintEnd_toStartOf="@+id/tv_fork_count"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
@@ -114,10 +116,13 @@
         android:id="@+id/rv_files"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/little_margin"
         android:layout_marginTop="@dimen/little_margin"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_files_title"
         tools:listitem="@layout/file_item" />
 

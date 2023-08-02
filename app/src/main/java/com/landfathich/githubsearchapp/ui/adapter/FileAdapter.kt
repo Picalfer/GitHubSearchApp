@@ -55,7 +55,8 @@ class FileAdapter(private val listener: Listener) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: FileViewHolder, position: Int) {
-        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.file_appearance_animation)
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.file_appearance_animation)
         holder.bind(list[position], listener)
     }
 

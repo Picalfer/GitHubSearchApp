@@ -5,7 +5,7 @@ import android.webkit.CookieManager
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.landfathich.githubsearchapp.R
-import com.template.webview.MyWebViewClient
+import com.landfathich.githubsearchapp.data.webview.MyWebViewClient
 
 class CodeActivity : AppCompatActivity() {
 

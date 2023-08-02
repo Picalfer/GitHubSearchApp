@@ -3,29 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="40dp"
-    android:background="@color/middle_gray"
     android:layout_height="match_parent"
+    android:background="@color/middle_gray"
+    android:padding="40dp"
     tools:context=".ui.screen.ErrorActivity">
+
+    <ImageView
+        android:id="@+id/iv_error"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="140dp"
+        android:src="@drawable/ic_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_error"
         android:layout_width="0dp"
-        android:textSize="16sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="@dimen/middle_margin"
         android:gravity="center"
         android:text="@string/error_text_title"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_error" />
 
     <Button
         android:id="@+id/btn_reload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/middle_margin"
+        android:backgroundTint="@color/soft_purple"
         android:text="@string/reloap_page"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_error" />
