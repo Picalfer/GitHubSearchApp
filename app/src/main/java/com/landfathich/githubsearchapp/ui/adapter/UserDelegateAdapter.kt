@@ -5,10 +5,10 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import com.landfathich.githubsearchapp.R
+import com.landfathich.githubsearchapp.Utils
 import com.landfathich.githubsearchapp.data.model.Item
 import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
@@ -42,8 +42,7 @@ class UserDelegateAdapter :
     }
 
     override fun onBindViewHolder(item: User, holder: ViewHolder, payloads: MutableList<Any>) {
-        holder.itemView.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.user_and_repo_appearance_animation)
+        Utils.setAnimationForListItem(holder)
         holder.bind(item)
     }
 }

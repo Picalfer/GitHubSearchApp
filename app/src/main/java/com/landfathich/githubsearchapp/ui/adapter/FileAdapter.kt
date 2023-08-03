@@ -63,7 +63,7 @@ class FileAdapter(private val listener: Listener) :
 
     override fun onBindViewHolder(holder: FileViewHolder, position: Int) {
         holder.itemView.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.file_appearance_animation)
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.file_item_animation)
         holder.bind(list[position], listener)
     }
 

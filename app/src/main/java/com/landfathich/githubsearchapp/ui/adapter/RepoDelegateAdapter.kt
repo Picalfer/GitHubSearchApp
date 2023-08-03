@@ -4,10 +4,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import com.landfathich.githubsearchapp.R
+import com.landfathich.githubsearchapp.Utils
 import com.landfathich.githubsearchapp.data.model.Item
 import com.landfathich.githubsearchapp.data.model.Repo
 import com.landfathich.githubsearchapp.databinding.RepoItemBinding
@@ -46,13 +46,8 @@ class RepoDelegateAdapter :
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        item: Repo,
-        holder: RepoDelegateAdapter.ViewHolder,
-        payloads: MutableList<Any>,
-    ) {
-        holder.itemView.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.user_and_repo_appearance_animation)
+    override fun onBindViewHolder(item: Repo, holder: ViewHolder, payloads: MutableList<Any>) {
+        Utils.setAnimationForListItem(holder)
         holder.bind(item)
     }
 }
