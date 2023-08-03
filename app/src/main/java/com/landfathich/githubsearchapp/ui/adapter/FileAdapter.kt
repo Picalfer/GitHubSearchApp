@@ -11,6 +11,11 @@ import com.landfathich.githubsearchapp.databinding.FileItemBinding
 
 class FileAdapter(private val listener: Listener) :
     RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
+
+    init {
+        setHasStableIds(true)
+    }
+
     private val list = ArrayList<RepoContentItem>()
 
     fun addList(items: ArrayList<RepoContentItem>) {
@@ -45,6 +50,8 @@ class FileAdapter(private val listener: Listener) :
             }
         }
     }
+
+    override fun getItemId(position: Int): Long = position.toLong()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileViewHolder {
         val view =
