@@ -7,4 +7,7 @@
     <string name="no_description_text">No description</string>
     <string name="tab_1_title">Followers</string>
     <string name="tab_2_title">Following</string>
+    <string name="watch_profile_btn_text">Watch Profile</string>
+    <string name="files_title">Files:</string>
+    <string name="avatar_hint">avatar</string>
 </resources>

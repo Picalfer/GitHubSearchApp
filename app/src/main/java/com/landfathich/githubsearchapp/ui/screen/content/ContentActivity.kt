@@ -10,6 +10,7 @@ import com.landfathich.githubsearchapp.R
 import com.landfathich.githubsearchapp.databinding.ActivityContentBinding
 import com.landfathich.githubsearchapp.ui.adapter.FileAdapter
 import com.landfathich.githubsearchapp.ui.screen.code.CodeActivity
+import com.landfathich.githubsearchapp.ui.screen.detail.DetailUserActivity
 import com.squareup.picasso.Picasso
 
 class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
@@ -32,11 +33,11 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
 
         adapter = FileAdapter(this)
 
-        owner = intent.getStringExtra("owner").toString()
-        repo = intent.getStringExtra("repo").toString()
-        val description = intent.getStringExtra("desc")
-        val forksCount = intent.getStringExtra("forks").toString()
-        val avatarUrl = intent.getStringExtra("avatar_url").toString()
+        owner = intent.getStringExtra("owner") ?: ""
+        repo = intent.getStringExtra("repo") ?: ""
+        val description = intent.getStringExtra("desc") ?: ""
+        val forksCount = intent.getStringExtra("forks") ?: ""
+        val avatarUrl = intent.getStringExtra("avatar_url") ?: ""
 
         getContent(owner, repo)
         setRepoInfo(owner, repo, description, forksCount, avatarUrl)
@@ -46,6 +47,13 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
         binding.apply {
             rvFiles.adapter = adapter
             rvFiles.setHasFixedSize(true)
+
+            userCard.setOnClickListener {
+                Intent(this@ContentActivity, DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, owner)
+                    startActivity(it)
+                }
+            }
         }
 
         viewModel.getSearch().observe(this) {
