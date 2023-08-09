@@ -5,4 +5,6 @@
     <string name="reloap_page">Перезагрузить страницу</string>
     <string name="error_text_title">Ошибка, проверьте интернет</string>
     <string name="no_description_text">No description</string>
+    <string name="tab_1_title">Followers</string>
+    <string name="tab_2_title">Following</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.landfathich.githubsearchapp.ui.adapter
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import com.landfathich.githubsearchapp.Utils
 import com.landfathich.githubsearchapp.data.model.Item
 import com.landfathich.githubsearchapp.data.model.User
 import com.landfathich.githubsearchapp.databinding.UserItemBinding
+import com.landfathich.githubsearchapp.ui.screen.detail.DetailUserActivity
 import com.squareup.picasso.Picasso
 
 class UserDelegateAdapter :
@@ -21,8 +21,10 @@ class UserDelegateAdapter :
         private val binding = UserItemBinding.bind(itemView)
         fun bind(user: User) {
             itemView.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.html_url))
-                itemView.context.startActivity(intent)
+                Intent(itemView.context, DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+                    itemView.context.startActivity(it)
+                }
             }
             binding.apply {
                 Picasso.get().load(user.avatar_url).into(ivAvatar)

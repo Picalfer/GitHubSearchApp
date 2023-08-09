@@ -36,6 +36,7 @@ class MainViewModel : ViewModel() {
                 }
                 list.addAll(repoList)
                 list.sortBy { it.id_name }
+
                 listItems.postValue(list)
             } catch (e: Throwable) {
                 val intent = Intent(context, ErrorActivity::class.java)
