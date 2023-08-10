@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.landfathich.githubsearchapp.databinding.ActivityDetailUserBinding
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -16,13 +20,11 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         val username = intent.getStringExtra(EXTRA_USERNAME) ?: ""
+        val id = intent.getIntExtra(EXTRA_ID, 0)
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(DetailUserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailUserViewModel::class.java)
 
         viewModel.setUserDetail(this, username)
         viewModel.getUserDetail().observe(this) {
@@ -37,6 +39,32 @@ class DetailUserActivity : AppCompatActivity() {
             }
         }
 
+        var _isChecked = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = viewModel.checkUser(id)
+            withContext(Dispatchers.Main) {
+                if (count != null) {
+                    if (count > 0) {
+                        binding.toggleFavorite.isChecked = true
+                        _isChecked = true
+                    } else {
+                        binding.toggleFavorite.isChecked = false
+                        _isChecked = false
+                    }
+                }
+            }
+        }
+
+        binding.toggleFavorite.setOnClickListener {
+            _isChecked = !_isChecked
+            if (_isChecked) {
+                viewModel.addToFavorite(username, id)
+            } else {
+                viewModel.removeFromFavorite(id)
+            }
+            binding.toggleFavorite.isChecked = _isChecked
+        }
+
         val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, bundle)
         binding.apply {
             viewPager.adapter = sectionPagerAdapter
@@ -46,5 +74,6 @@ class DetailUserActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_ID = "extra_id"
     }
 }

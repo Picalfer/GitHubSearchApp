@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.data.webview
+package com.landfathich.githubsearchapp.ui.webview
 
 import android.webkit.CookieManager
 import android.webkit.WebView

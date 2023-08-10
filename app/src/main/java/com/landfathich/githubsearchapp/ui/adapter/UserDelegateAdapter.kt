@@ -23,6 +23,7 @@ class UserDelegateAdapter :
             itemView.setOnClickListener {
                 Intent(itemView.context, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+                    it.putExtra(DetailUserActivity.EXTRA_ID, user.id)
                     itemView.context.startActivity(it)
                 }
             }

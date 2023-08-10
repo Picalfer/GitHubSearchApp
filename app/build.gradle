@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
 
     // room
-    implementation 'androidx.room:room-runtime:2.5.2'
-    kapt 'androidx.room:room-compiler:2.5.2'
+    implementation 'androidx.room:room-runtime:2.5.2' // Библиотека "Room"
+    kapt 'androidx.room:room-compiler:2.5.2' // Кодогенератор
+    implementation 'androidx.room:room-ktx:2.5.0' // Дополнительно для Kotlin Coroutines, Kotlin Flows
 }

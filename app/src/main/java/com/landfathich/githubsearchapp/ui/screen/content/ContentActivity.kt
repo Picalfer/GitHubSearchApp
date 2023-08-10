@@ -34,6 +34,7 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
         adapter = FileAdapter(this)
 
         owner = intent.getStringExtra("owner") ?: ""
+        val id = intent.getIntExtra("id", 0)
         repo = intent.getStringExtra("repo") ?: ""
         val description = intent.getStringExtra("desc") ?: ""
         val forksCount = intent.getStringExtra("forks") ?: ""
@@ -51,6 +52,7 @@ class ContentActivity : AppCompatActivity(), FileAdapter.Listener {
             userCard.setOnClickListener {
                 Intent(this@ContentActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, owner)
+                    it.putExtra(DetailUserActivity.EXTRA_ID, id)
                     startActivity(it)
                 }
             }
