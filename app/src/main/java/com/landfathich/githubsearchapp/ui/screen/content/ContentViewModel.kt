@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.landfathich.githubsearchapp.data.api.RetrofitClient
+import com.landfathich.githubsearchapp.api.RetrofitClient
 import com.landfathich.githubsearchapp.data.model.RepoContentItem
 import com.landfathich.githubsearchapp.ui.screen.ErrorActivity
 import kotlinx.coroutines.CoroutineScope

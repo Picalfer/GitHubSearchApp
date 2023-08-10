@@ -1,4 +1,4 @@
-package com.landfathich.githubsearchapp.data.api
+package com.landfathich.githubsearchapp.api
 
 import com.landfathich.githubsearchapp.data.model.DetailUserResponse
 import com.landfathich.githubsearchapp.data.model.RepoContent
