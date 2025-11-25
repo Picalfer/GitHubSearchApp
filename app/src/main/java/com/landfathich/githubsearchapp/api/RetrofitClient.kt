@@ -22,5 +22,5 @@ object RetrofitClient {
         .client(client)
         .build()
 
-    val apiInstance = retrofit.create(GitHubApi::class.java)
+    val apiInstance: GitHubApi = retrofit.create(GitHubApi::class.java)
 }

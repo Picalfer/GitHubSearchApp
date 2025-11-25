@@ -3,7 +3,6 @@ package com.landfathich.githubsearchapp.ui.screen.detail
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.service.autofill.UserData
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

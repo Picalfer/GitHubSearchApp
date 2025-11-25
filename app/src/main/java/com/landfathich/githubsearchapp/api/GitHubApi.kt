@@ -13,37 +13,37 @@ import retrofit2.http.Query
 
 interface GitHubApi {
     @GET("search/users")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getAllUsersByName(
         @Query("q") query: String,
     ): Response<UserResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getUserDetail(
         @Path("username") username: String,
     ): Response<DetailUserResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getFollowers(
         @Path("username") username: String,
     ): Response<ArrayList<User>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getFollowing(
         @Path("username") username: String,
     ): Response<ArrayList<User>>
 
     @GET("search/repositories")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getAllReposByName(
         @Query("q") query: String,
     ): Response<RepoResponse>
 
     @GET("/repos/{owner}/{repo}/contents/{path}")
-    @Headers("Authorization: token ${ApiConstants.token}")
+    @Headers("Authorization: token ${ApiConstants.TOKEN}")
     suspend fun getRepoContent(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
